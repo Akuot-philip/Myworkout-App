@@ -1,5 +1,6 @@
 package dev.akuot.workoutlog
 
+import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
@@ -7,55 +8,47 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
+import dev.akuot.workoutlog.databinding.ActivityLoginBinding
 
 class LoginActivity : AppCompatActivity() {
-    private lateinit var btnLogin:Button
-    private lateinit var tilEmail:TextInputLayout
-    private lateinit var tilPassword:TextInputLayout
-    private lateinit var etEmail:TextInputEditText
-    private lateinit var etPassword:TextInputEditText
-    private lateinit var tvSignup:TextView
+    lateinit var binding:ActivityLoginBinding
+
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        binding=ActivityLoginBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-        setContentView(R.layout.activity_login)
-        btnLogin=findViewById(R.id.btnLogin)
-        tilEmail=findViewById(R.id.tilEmail)
-        tilPassword=findViewById(R.id.tilPassword)
-        etEmail=findViewById(R.id.etEmail)
-        etPassword=findViewById(R.id.etPassword)
-        tvSignup=findViewById(R.id.tvSignup)
 
-        tvSignup.setOnClickListener{
-            val intent=Intent(this,signupActivity::class.java)
-            startActivity(intent)
-        }
 
-        btnLogin.setOnClickListener{
+        binding.btnLogin.setOnClickListener{
             validateLogin()
-
-
         }
-
     }
+
+
     private fun validateLogin(){
-      val email=etEmail.text.toString()
-        val password=etPassword.text.toString()
+      val email=binding.etEmail.text.toString()
+        val password=binding.etPassword.text.toString()
         var error=false
 
         if (email.isBlank()){
-            tilEmail.error =getString(R.string.email_required)
+            binding.tilEmail.error ="email required"
             error =true
 
         }
         if (password.isBlank()){
-            tilPassword.error ="Email is required"
+            binding.tilPassword.error ="Email is required"
             error=true
         }
-        if (error){
+        if (!error){
             startActivity(Intent(this,HomeActivity::class.java))
-            finish()
+
+
+      }
+
         }
-    }
-}
+
+        }
+
