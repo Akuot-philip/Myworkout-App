@@ -3,7 +3,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="dev.akuot.workoutlog">
 
+    <uses-permission android:name="android.permission.INTERNET"/>
+
     <application
+        android:usesCleartextTraffic="true"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -14,16 +17,16 @@
         android:theme="@style/Theme.WORKOUTLOG"
         tools:targetApi="31">
         <activity
-            android:name=".HomeActivity"
+            android:name=".ui.HomeActivity"
             android:exported="false" />
         <activity
-            android:name=".signupActivity"
+            android:name=".ui.signupActivity"
             android:exported="false" />
         <activity
-            android:name=".LoginActivity"
+            android:name=".ui.LoginActivity"
             android:exported="false" />
         <activity
-            android:name=".SplashActivity"
+            android:name=".ui.SplashActivity"
             android:exported="true"
             android:theme="@style/SplashTheme">
             <intent-filter>
