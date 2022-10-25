@@ -86,29 +86,3 @@ class signupActivity : AppCompatActivity() {
         })
     }
 }
-//         fun makeRegistrationRequest(registerRequest: RegisterRequest){
-//             var apiClient = APIClient.buildApiClient(ApiInterface::class.java)
-//             var request =apiClient.registerUser(registerRequest)
-//             request.enqueue(object : Callback<RegisterResponse>{
-//                 override fun onResponse(
-//                     call: Call<RegisterResponse>,
-//                     response: Response<RegisterResponse>
-//                 ) {
-//                    if (response.isSuccessful){
-//                        var message =response.body()?.message
-//                        Toast.makeText(baseContext,message,Toast.LENGTH_LONG).show()
-//
-//                    }else{
-//                        val error = response.errorBody()?.string()
-//                        Toast.makeText(baseContext,error,Toast.LENGTH_LONG).show()
-//                    }
-//                 }
-//
-//                 override fun onFailure(call: Call<RegisterResponse>, t: Throwable) {
-//                     Toast.makeText(baseContext, t.message, Toast.LENGTH_LONG).show()
-//                 }
-//
-//             })
-//         }
-//
-//    }

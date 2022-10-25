@@ -4,17 +4,21 @@ import android.content.Intent
 import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.activity.viewModels
 import dev.akuot.workoutlog.R
 import dev.akuot.workoutlog.databinding.ActivityHomeBinding
 import dev.akuot.workoutlog.models.LoginResponse
+import dev.akuot.workoutlog.viewmodel.ExerciseViewModel
 
 class HomeActivity : AppCompatActivity() {
     lateinit var binding: ActivityHomeBinding
     lateinit var sharedPrefs:SharedPreferences
+    val exerciseViewModel:ExerciseViewModel by viewModels()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding=ActivityHomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
+//        sharedPrefs = getSharedPreferences("WORKOUTLOG")
 
 
         binding.tvLogout.setOnClickListener{

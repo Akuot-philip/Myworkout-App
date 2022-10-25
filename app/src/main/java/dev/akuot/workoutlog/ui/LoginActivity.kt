@@ -13,6 +13,7 @@ import dev.akuot.workoutlog.databinding.ActivityLoginBinding
 import dev.akuot.workoutlog.models.LoginRequest
 import dev.akuot.workoutlog.models.LoginResponse
 import dev.akuot.workoutlog.api.ApiInterface
+import dev.akuot.workoutlog.util.Constants
 import dev.akuot.workoutlog.viewmodel.UserViewModel
 import retrofit2.Call
 import retrofit2.Callback
@@ -28,7 +29,7 @@ class LoginActivity : AppCompatActivity() {
         binding=ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        sharedPrefs= getSharedPreferences("WORKOUTLOG_PREFS", MODE_PRIVATE)
+        sharedPrefs= getSharedPreferences(Constants.prefsFile, MODE_PRIVATE)
 
        binding.tvSignup.setOnClickListener{
     val intent=Intent(this, signupActivity::class.java)
@@ -85,36 +86,11 @@ class LoginActivity : AppCompatActivity() {
         }
 
         }
-//    fun makeLoginRequest(loginRequest:LoginRequest){
-//        var apiClient = APIClient.buildApiClient(ApiInterface::class.java)
-//        val request =apiClient.login(loginRequest)
-//
-//        request.enqueue(object:Callback<LoginResponse>{
-//            override fun onResponse(call: Call<LoginResponse>, response: Response<LoginResponse>) {
-//                binding.pbLogin.visibility = View.GONE
-//                if (response.isSuccessful){
-//                    val loginResponse = response.body()
-//                    saveLoginDetails(loginResponse!!)
-//                    Toast.makeText(baseContext, response.body()?.message, Toast.LENGTH_LONG).show()
-//                    startActivity(Intent(baseContext,HomeActivity::class.java))
-//                    finish()
-//
-//                }
-//                else{
-//                    val error = response.errorBody()?.string()
-//                    binding.pbLogin.visibility = View.VISIBLE
-//                    Toast.makeText(baseContext,error,Toast.LENGTH_LONG).show()
-//                }
-//            }
-//
-//            override fun onFailure(call: Call<LoginResponse>, t: Throwable) {
-//                binding.pbLogin.visibility = View.GONE
-//                Toast.makeText(baseContext,t.message,Toast.LENGTH_LONG).show()
-//            }
-//        })
-//    }
+
     fun saveLoginDetails(loginResponse: LoginResponse){
         val editor = sharedPrefs.edit()
+        val token ="Bearer${loginResponse.accessToken}"
+
         editor.putString("ACCESS_TOKEN", loginResponse.accessToken)
         editor.putString("USER_ID", loginResponse.userId)
         editor.putString("PROFILE_ID", loginResponse.profileId)
